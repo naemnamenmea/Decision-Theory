@@ -10,3 +10,16 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 #Built: R 3.4.2; ; 2017-11-03 10:23:15 UTC; windows
+Built: R 3.4.2; ; 2017-11-03 13:50:40 UTC; windows
+RemoteType: github
+RemoteHost: https://api.github.com
+RemoteRepo: SMCS
+RemoteUsername: naemnamenmea
+RemoteRef: master
+RemoteSha: 89d01b9fb20e29e55d2d1be692d7bc884d9d581a
+RemoteSubdir: MyBigLib
+GithubRepo: SMCS
+GithubUsername: naemnamenmea
+GithubRef: master
+GithubSHA1: 89d01b9fb20e29e55d2d1be692d7bc884d9d581a
+GithubSubdir: MyBigLib
