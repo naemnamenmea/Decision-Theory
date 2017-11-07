@@ -1,0 +1,14 @@
+как связать мой пакет с моей программой
+совместимость версий
+
+1.через гитхаб
+	library("devtools")
+	install_github("naemnamenmea/SMCS/MyBigLib")
+	library("package")
+2.оффлайн как-то
+	.libPaths("C:/")
+	library(package)
+
+запуск одного скрипта через другой
+	setwd("C:/")
+	source("script.r")
