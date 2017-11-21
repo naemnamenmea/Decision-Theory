@@ -1,4 +1,4 @@
-ker.type <- c("uniform",    "triangle",  "parabolic", "biquadratic",
+ï»¿ker.type <- c("uniform",    "triangle",  "parabolic", "biquadratic",
               "tricaprate", "tricubic",  "gaussian",  "cosine",
               "logistics",  "sigmoidal", "silvermans")
 
@@ -143,7 +143,7 @@ xl <- iris[, c(a,b,5)]
 # plot(x=1, type="n", xlab="h", ylab="LOO",
 #      xlim=c(0, 41), ylim=c(0, 2), xaxs="i", yaxs="i")
 # points(1:40,res2[1:40])
-# legend(x=41, y=2*2/3, legend=c("a: parsenWindowFix", "ßäðî: Ïàðàáîëè÷åñêîå", "h_opt = 1", "LOO(1) = 0.04"),
+# legend(x=41, y=2*2/3, legend=c("a: parsenWindowFix", "Ð¯Ð´Ñ€Ð¾: ÐŸÐ°Ñ€Ð°Ð±Ð¾Ð»Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ", "h_opt = 1", "LOO(1) = 0.04"),
 #        cex=1.2, text.font=6, xpd=NA,bty="n") #cex=1.5
 
 # res <- min(loo(1:40,xl))
@@ -151,16 +151,16 @@ xl <- iris[, c(a,b,5)]
 
 colors <- c("setosa" ="red", "versicolor" ="green3", "virginica" ="blue")
 fontcolors <- c("versicolor" ="green3", "virginica" ="blue", "setosa" ="red")
-# Ñîçäàåì ïóñòîé õîëñò
+# Ð¡Ð¾Ð·Ð´Ð°ÐµÐ¼ Ð¿ÑƒÑÑ‚Ð¾Ð¹ Ñ…Ð¾Ð»ÑÑ‚
 margin <- 0.3
 xright <- max(xl[, 1]) + margin
 xleft <-max(min(xl[, 1]) - margin,0)
 ytop <- max(xl[, 2]) + margin
 ybot <- max(min(xl[, 2]) - margin,0)
 par(xpd=FALSE,oma=c(0,0,0,10))
-plot(main="parsenWindowFloat, Ker = Parabolic, äëÿ k=32", x=1, type="n", xlab=colnames(xl)[1], ylab=colnames(xl)[2],
+plot(main="parsenWindowFloat, Ker = Parabolic, Ð´Ð»Ñ k=32", x=1, type="n", xlab=colnames(xl)[1], ylab=colnames(xl)[2],
      xlim=c(xleft, xright), ylim=c(ybot, ytop), xaxs="i", yaxs="i")
-# # Êëàññèôèêàöèÿ ïîëÿ îáúåêòîâ
+# # ÐšÐ»Ð°ÑÑÐ¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ñ Ð¿Ð¾Ð»Ñ Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð²
 # exTime <- system.time(
 # for(i in seq(from=ybot+0.1, to=ytop-0.1, by=0.1)) {
 #   for(j in seq(from=xleft+0.1, to=xright-0.1, by=0.1)) {
@@ -168,7 +168,7 @@ plot(main="parsenWindowFloat, Ker = Parabolic, äëÿ k=32", x=1, type="n", xlab=co
 #     if(class!="") points(j, i, pch =1, col =fontcolors[class]) # cex=6, lwd=4, asp=1
 #   }
 # })
-# # Ðèñóåì âûáîðêó
+# # Ð Ð¸ÑÑƒÐµÐ¼ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÑƒ
 # points(iris[, c(a,b)], pch =21, bg = colors[iris$Species], col ="black")
 # legend(x=xright, y=ytop*2/3, legend=names(colors), #"topleft", inset=c(1.1,0.2)
 #        cex=1.5, pch = c(21,21,21),

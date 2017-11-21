@@ -1,4 +1,4 @@
-Margin <- function(xl,i)
+﻿Margin <- function(xl,i)
 {
 l <- dim(xl)[1]
 n <- dim(xl)[2]-1

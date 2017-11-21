@@ -1,8 +1,8 @@
-euclideanDistance <- function(u, v)
+ï»¿euclideanDistance <- function(u, v)
 {
   sqrt(sum((u - v)^2))
 }
-#ÎÁÐÀÇÅÖ
+#ÑœÐ…â€“Ñ˜Â«â‰ˆÃ·
 kNN <- function(xl, z, k, metricFunction = euclideanDistance)
 {
   l <- dim(xl)[1]
@@ -18,7 +18,7 @@ kNN <- function(xl, z, k, metricFunction = euclideanDistance)
   class <- names(which.max(counts))
   return (class)
 }
-#l è n ìû âû÷èñëÿåì çàðàíåå
+#l Ð¸ n Ð¼Ñ‹ Ð²Ñ‹Ñ‡Ð¸ÑÐ»Â¤ÐµÐ¼ Ð·Ð°Ñ€Ð°Ð½ÐµÐµ
 kNN <- function(xl, z, k, metricFunction = euclideanDistance)
 {
   l <- dim(xl)[1]
@@ -45,7 +45,7 @@ kNN <- function(xl, z, k, metricFunction = euclideanDistance)
   }
   sum
 
-#n è l ìû ñ÷èòàåì ïî õîäó äåëà
+#n Ð¸ l Ð¼Ñ‹ ÑÑ‡Ð¸Ñ‚Ð°ÐµÐ¼ Ð¿Ð¾ Ñ…Ð¾Ð´Ñƒ Ð´ÐµÐ»Ð°
 kNN <- function(xl, z, k, metricFunction = euclideanDistance)
 {
   l <- dim(xl)[1]

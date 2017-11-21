@@ -1,4 +1,4 @@
-potentialFunc <- function(xl,u,h,charge,metricFunction = euclideanDistance)
+﻿potentialFunc <- function(xl,u,h,charge,metricFunction = euclideanDistance)
 {#не работает почему-то ((
   l <- dim(xl)[1]
   n <- dim(xl)[2]-1
