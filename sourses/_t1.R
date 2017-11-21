@@ -1,4 +1,4 @@
-dfgfdgfd# source("C:\\Users\\Андрей\\Desktop\\СМПР\\test.r", echo = TRUE)
+# source("C:\\Users\\Андрей\\Desktop\\СМПР\\test.r", echo = TRUE)
 # source('C:/Users/Андрей/Desktop/СМПР/test.r', echo = TRUE)
 colors <- c("setosa" ="red", "versicolor" ="green3", "virginica" ="blue")
 # colors <- c("virginica" ="blue","versicolor" ="green3","setosa" ="red")
