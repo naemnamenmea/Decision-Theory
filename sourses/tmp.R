@@ -41,7 +41,7 @@ legend(x=41, y=0.15*2/3, lty=1, lwd=3, col=veC, legend=c("kNN", "kwNN",
 # par(xpd=FALSE,oma=c(0,0,0,10)) #oma=c(0,0,0,10)
 # plot(x=1, type="n", xlab="h", ylab="LOO",
 #      xlim=c(0, 41), ylim=c(0, 2), xaxs="i", yaxs="i")
-# points(1:40,res2[1:40])
+# points(1:40,res1[1:40])
 
 
 # res <- min(loo(1:40,xl))
