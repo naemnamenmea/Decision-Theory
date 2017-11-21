@@ -144,7 +144,7 @@ drawlookwNN <- function() {
 	points(1:40,res1[1:40])
 }
 
-drawloodrawparsenWindowFix <- function() {
+drawlooparsenWindowFix <- function() {
 	res1 <- 1
 	for(i in 1:40)
 	{
@@ -158,7 +158,7 @@ drawloodrawparsenWindowFix <- function() {
 	points(1:40,res1[1:40])
 }
 
-drawloodrawparsenWindowFloat <- function() {
+drawlooparsenWindowFloat <- function() {
 	res1 <- 1
 	for(i in 1:40)
 	{
