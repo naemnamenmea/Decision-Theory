@@ -1,3 +1,7 @@
+https://vim.sourceforge.io/docs.php
+https://desktop.github.com
+https://git-scm.com/book/ru/v2
+
 как связать мой пакет с моей программой
 совместимость версий
 

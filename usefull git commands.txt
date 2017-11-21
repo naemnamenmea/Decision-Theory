@@ -1,0 +1,62 @@
+$ git ls-files 
+# This lists all of the files in the repository, including those that are only staged but not yet committed.
+# https://www.kernel.org/pub/software/scm/git/docs/git-ls-files.html
+
+$ git status
+# 
+# https://www.kernel.org/pub/software/scm/git/docs/git-status.html
+
+$ git push origin branch_name (master)
+# 
+# 
+
+$ git commit -a --allow-empty-message -m ""
+# 
+# 
+
+$ git add .
+# 
+# 
+
+$ git rm --cached "file" / git rm --cached -r mydirectory
+# https://stackoverflow.com/questions/28578581/how-to-completely-clear-git-repository-without-deleting-it
+# 
+
+$ git remote set-url origin https://github.com/naemnamenmea/SMCS
+#
+$ git remote add origin https://github.com/naemnamenmea/SMCS
+$ git checkout -b master
+# https://stackoverflow.com/questions/42735837/git-bash-remote-error-you-cant-push-to-git-github-com
+# https://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository
+
+$ git clone https://github.com/naemnamenmea/SMCS.git git://github.com/naemnamenmea/SMCS.git
+# 
+# 
+
+$ git pull
+# 
+# 
+
+$ git init
+# 
+# 
+
+$ cd
+# 
+# 
+
+$ git config --global user.name "user_name" / git config --global user.email "user_email" C:\Users\UserName\.gitconfig
+# 
+# 
+
+$ git branch
+# 
+# 
+
+$ clear - clear the terminal window
+# 
+# 
+
+$ git mv README.txt README
+# 
+# 
