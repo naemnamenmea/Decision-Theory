@@ -1,4 +1,4 @@
-﻿potentialFunc <- function(xl,u,h,charge,metricFunction = euclideanDistance)
+potentialFunc <- function(xl,u,h,charge,metricFunction = euclideanDistance)
 {#не работает почему-то ((
   l <- dim(xl)[1]
   n <- dim(xl)[2]-1
@@ -19,6 +19,7 @@
   }
   as.character(classesList[which.max(counts)])
 }
+
 optimizedCharge <- function(xl,eps,h)
 {
   l <- dim(xl)[1]
@@ -39,6 +40,7 @@ optimizedCharge <- function(xl,eps,h)
   }
   return(charge)
 }
-potentialFunc(xl,c(6.5,2),rep(1,150),rep(10,150))
-vec <- optimizedCharge(xl,0.1,1)
-vec
+
+#potentialFunc(xl,c(6.5,2),rep(1,150),rep(10,150))
+#vec <- optimizedCharge(xl,0.1,1)
+#vec
