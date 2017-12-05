@@ -15,7 +15,7 @@ potentialFunc <- function(xl,u,h,charge,metricFunction = euclideanDistance)
   {
     counts[which(orderedXl[i,n+1]==classesList)] <- 
       counts[which(orderedXl[i,n+1]==classesList)] +
-      charge[i]*kerne(distances[i, 2]/h[i],ker.type[3])
+      charge[i]*kerne(distances[i, 2]/h,ker.type[7])
   }
   as.character(classesList[which.max(counts)])
 }
