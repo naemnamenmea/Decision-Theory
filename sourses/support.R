@@ -39,6 +39,21 @@ loo <- function(k, xl, a=kNN)
   sum/l
 }
 
+loo_potential <- function(xl,  h, gammaV){
+  sum <- 0
+  for(i in 1:nrow(xl)) {
+		point <- c(xl[i, 1] , xl[i, 2])
+	
+    test_data <- xl[-i, ]
+    test_gamma <- gammaV[-i]
+    value <- potentialFunc(test_data,  point, h, test_gamma)
+    if(xl[i, 3] != value){
+      sum <- sum + 1
+    }
+  }
+  return(sum / nrow(xl))  
+}
+
 w <- function(i,k=0,q=0) #весовая ф-ция
 {
   if(k>0) {

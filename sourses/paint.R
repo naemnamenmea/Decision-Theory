@@ -12,6 +12,33 @@ drawloo <- function() {
 	#drawlooparsenWindowFloat()
 }
 
+drawPotential <- function() {
+  margin <- 0.3
+  xright <- max(xl[, 1]) + margin
+  xleft <-max(min(xl[, 1]) - margin,0)
+  ytop <- max(xl[, 2]) + margin
+  ybot <- max(min(xl[, 2]) - margin,0)
+  par(xpd=FALSE,oma=c(0,0,0,10))
+  
+  plot(main="potential, h=1", x=1, type="n", xlab=colnames(xl)[1], ylab=colnames(xl)[2],
+       xlim=c(xleft, xright), ylim=c(ybot, ytop), xaxs="i", yaxs="i")
+  
+  optGamma <- getBestGamma(xl,rep(1,nrow(xl)),rep(1,nrow(xl)),0.01)
+  for(i in seq(from=ybot+0.1, to=ytop-0.1, by=0.1)) {
+    for(j in seq(from=xleft+0.1, to=xright-0.1, by=0.1)) {
+      class <- potentialFunc(xl, c(j,i), rep(1,nrow(xl)), optGamma)
+      if(class!="") points(j, i, pch =1, col =fontcolors[class]) # cex=6, lwd=4, asp=1
+    }
+  }
+  
+  points(iris[, c(a,b)], pch =21, bg = colors[iris$Species], col ="black", asp=1)
+  
+  legend(x=xright, y=ytop*2/3, legend=names(colors), #"topleft", inset=c(1.1,0.2)
+         cex=1.5, pch = c(21,21,21),
+         text.font=6, pt.bg=c(colors[names(colors)[1]],colors[names(colors)[2]],colors[names(colors)[3]]),
+         xpd=NA,horiz=FALSE, bty="n", bg="white") #xpd=TRUE, bty="y"
+}
+
 drawkNN <- function() {
 	margin <- 0.3
 	xright <- max(xl[, 1]) + margin
@@ -72,12 +99,12 @@ drawparsenWindowFix <- function() {
 	ybot <- max(min(xl[, 2]) - margin,0)
 	par(xpd=FALSE,oma=c(0,0,0,10))
 
-  plot(main="parsenWindowFix, h=1", x=1, type="n", xlab=colnames(xl)[1], ylab=colnames(xl)[2],
+  plot(main="parsenWindowFix, h=1, Ker:triangle", x=1, type="n", xlab=colnames(xl)[1], ylab=colnames(xl)[2],
        xlim=c(xleft, xright), ylim=c(ybot, ytop), xaxs="i", yaxs="i")
 
   for(i in seq(from=ybot+0.1, to=ytop-0.1, by=0.1)) {
     for(j in seq(from=xleft+0.1, to=xright-0.1, by=0.1)) {
-      class <- parsenWindowFix(xl, c(j,i), 1)
+      class <- parsenWindowFix(xl, c(j,i), 5)
       if(class!="") points(j, i, pch =1, col =fontcolors[class]) # cex=6, lwd=4, asp=1
     }
   }
@@ -114,6 +141,32 @@ drawparsenWindowFloat <- function() {
          cex=1.5, pch = c(21,21,21),
          text.font=6, pt.bg=c(colors[names(colors)[1]],colors[names(colors)[2]],colors[names(colors)[3]]),
          xpd=NA,horiz=FALSE, bty="n", bg="white") #xpd=TRUE, bty="y"
+}
+
+drawNaiveBayes <- function(lambda = c(1,1,1), h = c(1,1)) {
+  margin <- 0.3
+  xright <- max(xl[, 1]) + margin
+  xleft <-max(min(xl[, 1]) - margin,0)
+  ytop <- max(xl[, 2]) + margin
+  ybot <- max(min(xl[, 2]) - margin,0)
+  par(xpd=FALSE,oma=c(0,0,0,10))
+  
+  plot(main="naiveBayes", x=1, type="n", xlab=colnames(xl)[1], ylab=colnames(xl)[2],
+       xlim=c(xleft, xright), ylim=c(ybot, ytop), xaxs="i", yaxs="i")
+  
+  for(i in seq(from=ybot+0.1, to=ytop-0.1, by=0.1)) {
+    for(j in seq(from=xleft+0.1, to=xright-0.1, by=0.1)) {
+      class <- naiveBayes(xl,c(j,i), lambda, h) 
+      if(class!="") points(j, i, pch =1, col =fontcolors[class])
+    }
+  }
+  
+  points(xl[ ,c(1,2)], pch =21, bg = colors[iris$Species], col ="black", asp=1)
+  
+  legend(x=xright, y=ytop*2/3, legend=names(colors),
+         cex=1.5, pch = c(21,21,21),
+         text.font=6, pt.bg=c(colors[names(colors)[1]],colors[names(colors)[2]],colors[names(colors)[3]]),
+         xpd=NA,horiz=FALSE, bty="n", bg="white")
 }
 
 drawlookNN <- function() {
