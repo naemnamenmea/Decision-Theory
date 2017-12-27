@@ -3,7 +3,7 @@ ___
 
 ## Adaline
 ___
-![Adaline]()
+![Adaline](images/ADALINE.png)
 ```R
 ## Квадратичная функция потерь
 lossQuad <- function(x)
@@ -70,7 +70,7 @@ sg.ADALINE <- function(xl, eta = 1, lambda = 1/6)
 
 ## Hebb
 ___
-![Hebb]()
+![Hebb](images/Hebbs_rule.png)
 ```R
 ## Функция потерь для правила Хэбба
 lossPerceptron <- function(x)
@@ -125,7 +125,7 @@ sg.Hebb <- function(xl, eta = 0.1, lambda = 1/6)
 
 ## LogRegression
 ___
-![LogRegression]()
+![LogRegression](images/Log_regression.png)
 ```R
 ## Логарифмическая функция потерь
 lossLog <- function(x)
@@ -179,3 +179,6 @@ sg.LogRegression <- function(xl)
 	return (w)
 }
 ```
+### Comparison
+___
+![Adaline](images/Linear.png)

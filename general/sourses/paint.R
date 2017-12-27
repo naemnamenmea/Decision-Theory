@@ -78,11 +78,11 @@ drawSTOLPkNN <- function() {
 drawLinear <- function()
 {
   # Кол-во объектов в каждом классе
-  ObjectsCountOfEachClass <- 100
+  ObjectsCountOfEachClass <- 87
   ## Моделируем обучающие данные
   library(MASS)
-  Sigma1 <- matrix(c(2, 0, 0, 10), 2, 2)
-  Sigma2 <- matrix(c(4, 1, 1, 2), 2, 2)
+  Sigma1 <- matrix(c(2, 4, 1, 41), 2, 2)
+  Sigma2 <- matrix(c(4, 1, 3, 41), 2, 2)
   xy1 <- mvrnorm(n=ObjectsCountOfEachClass, c(0, 0), Sigma1)
   xy2 <- mvrnorm(n=ObjectsCountOfEachClass, c(10, -10), Sigma2)
   xl <- rbind(cbind(xy1, -1), cbind(xy2, +1))
@@ -106,7 +106,7 @@ drawLinear <- function()
 	w <- sg.LogRegression(xlNorm)
 	abline(a = w[3] / w[2], b = -w[1] / w[2], lwd = 3, col = "red")
 		   
-	legend("bottomleft", c("ADALINE", "Hebb's rule",
+	legend("bottomright", c("ADALINE", "Hebb's rule",
 	"Logistic regression"), pch = c(15,15,15), 
 	col = c("blue", "green3", "red"))
 }

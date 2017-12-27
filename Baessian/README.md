@@ -62,7 +62,7 @@ getPlugInDiskriminantCoeffs <- function(mu1, sigma1, mu2, sigma2)
 
 ## LDF
 ___
-![LDF]()
+![LDF](images/LDF.png)
 ```R
 ## Оценка ковариационной матрицы для ЛДФ
 estimateFisherCovarianceMatrix <- function(objects1, objects2, mu1, mu2)
