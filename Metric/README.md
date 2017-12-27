@@ -17,7 +17,7 @@ ___
 ___
 Смысл алгоритма очень прост. Если в двух словах, то мы говорим, что объект `u` относится к классу `Yi`, если среди k ближайших объектов со схожими свойствами больше объектов, принадлежащих к классу `Yi`. Степень близости каждого из `k` соседей не учитывается, важен сам факт соседства. Визуально это отображено на картинке ниже:
 
-![kNN](/images/kNN.png)
+![kNN](images/kNN.png)
 
 ```R
 kNN <- function(xl, z, k, metricFunction = euclideanDistance)
@@ -32,15 +32,15 @@ kNN <- function(xl, z, k, metricFunction = euclideanDistance)
 }
 ```
 
-[Оптимальный k для kNN](/images/kNN_kOpt.png).
-Код лежит [тут](/sourses/kNN.R).
+[Оптимальный k для kNN](images/kNN_kOpt.png).
+Код лежит [тут](sourses/kNN.R).
 Подробнее про **_Метод ближайших соседей_** можно найти [здесь](www.machinelearning.ru/wiki/index.php?title=Метод_ближайшего_соседа).
 
 ## kwNN
 ___
 Здесь уже вводится т.н. весовая фунция `w(i)`, которая в алгоритме kNN была просто константой множителем - 1. `w(i)` - убывающая функция. Тут мы опять нахожим `k` ближайших соседей, но теперь чем дальше сосед, тем меньший вклад он привносит в определении класса объекта `u`.
 
-![kwNN](/images/kwNN.png)
+![kwNN](images/kwNN.png)
 
 ```R
 kwNN <- function(xl, z, k, metricFunction = euclideanDistance)
@@ -60,17 +60,17 @@ kwNN <- function(xl, z, k, metricFunction = euclideanDistance)
 }
 ```
 
-[Оптимальный k для kwNN](/images/kwNN_kOpt.png).
-Код лежит [тут](/sourses/kwNN.R).
+[Оптимальный k для kwNN](images/kwNN_kOpt.png).
+Код лежит [тут](sourses/kwNN.R).
 Подробнее про **_Метод взвешенных ближайших соседей_** можно найти [здесь](http://www.machinelearning.ru/wiki/index.php?title=Метод_k_взвешенных_ближайших_соседей_(пример)).
 
-![преимущество kNN над kwNN 1](/images/kNN_k11.png) ![преимущество kNN над kwNN 2](/images/kwNN_k11.png)
+![преимущество kNN над kwNN 1](images/kNN_k11.png) ![преимущество kNN над kwNN 2](images/kwNN_k11.png)
 
 ## Парзеновское окно
 ___
 Представим что наш объект `u` является центром сферы, и мы расширили радиус сферы до значения `h` - ширины окна. Тогда чем больше объектов `Yi` класса окажется внутри этой сферы, тем вероятнее что объект `u` принадлежит классу `Yi`. По сути этот метод является двойственным к kNN (kwNN).
 
-![Парзеновское окно](/images/parsenWindowFix.png)
+![Парзеновское окно](images/parsenWindowFix.png)
 
 ```R
 parsenWindowFix <- function(xl, u, h, kerType=ker.type[3])
@@ -90,16 +90,16 @@ parsenWindowFix <- function(xl, u, h, kerType=ker.type[3])
 }
 ```
 
-[Оптимальное h для Парзеновского окна](/images/parsenWindowFix_hOpt.png).
-Код лежит [тут](/sourses/parsenWindowFix.R).
-[Наглядная иллюстрация](/images/pasrenwindowexample.png).
+[Оптимальное h для Парзеновского окна](images/parsenWindowFix_hOpt.png).
+Код лежит [тут](sourses/parsenWindowFix.R).
+[Наглядная иллюстрация](images/pasrenwindowexample.png).
 Подробнее про **_метод Парзеновского окна_** можно найти [здесь](www.machinelearning.ru/wiki/index.php?title=Метод_парзеновского_окна).
 
 ## Парзеновское окно с переменной шириной
 ___
 Здесь выбор параметра `h` зависит от `k`. Так что по большому счету это тот же kNN. Только тут вместо `w(i)`, используется `Ker(u)` - функция ядра, интеграл по которой = 1, и она также убывает на интервале `[0,oo]`.
 
-![Парзеновское окно с переменной шириной](/images/parsenWindowFloat.png)
+![Парзеновское окно с переменной шириной](images/parsenWindowFloat.png)
 
 ```R
 parsenWindowFloat <- function(xl, u, k, kerType=ker.type[3])
@@ -135,7 +135,7 @@ parsenWindowFloat <- function(xl, u, k, kerType=ker.type[3])
 ```
 
 [Оптимальное k для Парзеновского окна с переменной шириной](https://github.com/naemnamenmea/SMCS/blob/master/images/parsenWindowFloat_kOpt.png).
-Код лежит [тут](/sourses/parsenWindowFloat.R).
+Код лежит [тут](sourses/parsenWindowFloat.R).
 Подробнее про **_метод Парзеновского окна с переменной шириной_** можно найти [здесь](machinelearning.ru/wiki/index.php?title=Метод_Парзеновского_окна_(пример)).
 
 <img src="images/PWFix_gaussian.png" width=40%/> <img src="images/PWFix_triangle.png" width=52%/> 
@@ -144,7 +144,7 @@ parsenWindowFloat <- function(xl, u, k, kerType=ker.type[3])
 ___
 Тут тоже все несложно. Мы проводим аналогию с физическими частицами (они имеют заряд и радиус действия этого заряда) и полагаем что каждый объект выборки `xl` имеет некий потенциал (заряд) и расстояние его действия. Каждый `i`-ый объект вносит в долю своего класса значение, которое равно `потенциал * ( степень действия/расстояние до объекта u )`.
 
-![Метод ПФ](/images/potential.png)
+![Метод ПФ](images/potential.png)
 
 ```R
 potentialFunc <- function(xl, x, h, gammaV){
@@ -184,7 +184,7 @@ getBestGamma <- function(xl, h, gammaV, eps){
 }
 ```
 
-Код лежит [тут](/sourses/potential.R).
+Код лежит [тут](sourses/potential.R).
 Подробнее про **_метод потенциальных функций_** можно найти [здесь](www.machinelearning.ru/wiki/index.php?title=Метод_потенциальных_функций).
 
 Полезно ознакомиться с таблицей ниже...
@@ -206,15 +206,15 @@ ___
 Грубо говоря `Margin =` степень близости объекта `u` до своего класса `-` степень близости до ближайшего НЕ своего класса.
 Посчитаем отступы всех элементов выборки `xl`, расположим объекты в порядке возрастания отступов и построим их график:
 
-![margin](/images/margin.png)
-Код лежит [тут](/sourses/Margin.R).
+![margin](../general/images/margin.png)
+Код лежит [тут](../general/sourses/Margin.R).
 Подробнее про **_Отступы_** и их применение можно найти [здесь](ru.learnmachinelearning.wikia.com/wiki/Отступ_(для_классификатора)).
 
 ## STOLP
 ___
 Этот метод (оптимизационный) позволяет сократить выборку `xl` выбросив из нее шумовые, неинформативные объекты, используя какой-то определенный алгоритм, например, `kNN` и функцию отступов `Margin`. Думаю не нужно объяснять почему он так хорош...
 
-![STOLP](/images/STOLP.png)
+![STOLP](../general/images/STOLP.png)
 
 ```R
 STOLP <- function(xl, delta, eps, metricFunction = euclideanDistance)
@@ -299,7 +299,7 @@ STOLP <- function(xl, delta, eps, metricFunction = euclideanDistance)
 }
 ```
 
-Код лежит [тут](/sourses/STOLP.R).
+Код лежит [тут](../general/sourses/STOLP.R).
 Подробнее про алгоритм **_STOLP_** можно найти [здесь](http://www.machinelearning.ru/wiki/index.php?title=Машинное_обучение_(курс_лекций%2C_К.В.Воронцов)).
-[loo for kNN before STOLP](/images/loo_for_kNN_before_STOLP.png)
-[loo for kNN after STOLP](/images/loo_for_kNN_after_STOLP.png)
+[loo for kNN before STOLP](../general/images/loo_for_kNN_before_STOLP.png)
+[loo for kNN after STOLP](../general/images/loo_for_kNN_after_STOLP.png)
