@@ -1,1 +1,3 @@
 # Welcome, friend! Enjoy classification algorithms here...
+
+![plug-in](Baessian/images/plug-in_quadro.png)
