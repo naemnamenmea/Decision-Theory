@@ -64,7 +64,7 @@ kwNN <- function(xl, z, k, metricFunction = euclideanDistance)
 Код лежит [тут](https://github.com/naemnamenmea/SMCS/blob/master/sourses/kwNN.R).
 Подробнее про **_Метод взвешенных ближайших соседей_** можно найти [здесь](http://www.machinelearning.ru/wiki/index.php?title=Метод_k_взвешенных_ближайших_соседей_(пример)).
 
-![преимущество kNN над kwNN](https://github.com/naemnamenmea/SMCS/blob/master/images/kNN_k11.png https://github.com/naemnamenmea/SMCS/blob/master/images/kwNN_k11.png)
+![преимущество kNN над kwNN 1](https://github.com/naemnamenmea/SMCS/blob/master/images/kNN_k11.png) ![преимущество kNN над kwNN 2](https://github.com/naemnamenmea/SMCS/blob/master/images/kwNN_k11.png)
 
 ## Парзеновское окно
 ___
@@ -138,7 +138,7 @@ parsenWindowFloat <- function(xl, u, k, kerType=ker.type[3])
 Код лежит [тут](https://github.com/naemnamenmea/SMCS/blob/master/sourses/parsenWindowFloat.R).
 Подробнее про **_метод Парзеновского окна с переменной шириной_** можно найти [здесь](machinelearning.ru/wiki/index.php?title=Метод_Парзеновского_окна_(пример)).
 
-[слева Гаусовское ядро, справа - треугольное](https://github.com/naemnamenmea/SMCS/blob/master/images/PWFix_gaussian.png https://github.com/naemnamenmea/SMCS/blob/master/images/PWFix_triangle.png)
+<img src="images/PWFix_gaussian.png" width=40%/> <img src="images/PWFix_triangle.png" width=52%/> 
 
 ## Метод потенциальных функций
 ___
@@ -303,40 +303,3 @@ STOLP <- function(xl, delta, eps, metricFunction = euclideanDistance)
 Подробнее про алгоритм **_STOLP_** можно найти [здесь](http://www.machinelearning.ru/wiki/index.php?title=Машинное_обучение_(курс_лекций%2C_К.В.Воронцов)).
 [loo for kNN before STOLP](https://github.com/naemnamenmea/SMCS/blob/master/images/loo_for_kNN_before_STOLP.png)
 [loo for kNN after STOLP](https://github.com/naemnamenmea/SMCS/blob/master/images/loo_for_kNN_after_STOLP.png)
-
-## Наивный Байесовский классификатор (NBC)
-___
-![NBC](https://github.com/naemnamenmea/SMCS/blob/master/images/baes1.png https://github.com/naemnamenmea/SMCS/blob/master/images/baes2.png)
-```R
-naiveBayes <- function(xl, x, lambda, h)
-{
-  aprior_prob <- c()
-  apost_prob <- c()
-  prob <- c()
-  classXl <- levels(xl$Species)     
-  n <- dim(xl)[2]-1
-  
-  for(y in 1:length(classXl))
-  {
-    sub_xl <- xl[xl$Species == classXl[y], ]
-    m <- nrow(sub_xl)
-    aprior_prob[y] <- m / dim(xl)[1]
-    
-    sum <- 0
-    for(j in 1:m)
-    {
-      apost_value <- 1
-      for(i in 1:n)
-      {
-        kerneRes <- kerne((x[i] - sub_xl[j,i]) / h[i], ker.type[7]) / h[i]
-        apost_value <- apost_value * kerneRes
-      }
-      sum <- sum + apost_value
-    }
-    apost_prob[y] <- sum / m
-    
-    prob[y] <- log(lambda[y]*aprior_prob[y]) + log(apost_prob[y]) 
-  }   
-  return(levels(xl$Species)[match(max(prob), prob)])
-}
-```

@@ -24,7 +24,7 @@ potentialFunc <- function(xl, x, h, gammaV){
   distances <- c()
   wght_to_class <- c()
   for(i in 1:nrow(xl)){
-    distances[i] <- euclideanDistance(xl[i , 1:length(xl) - 1] , x)
+    distances[i] <- euclideanDistance(xl[i , -ncol(xl)] , x)
     wght_to_class[i] <- kerne(distances[i] / h[i], ker.type[7]) * gammaV[i]  
   }
   
@@ -41,17 +41,17 @@ potentialFunc <- function(xl, x, h, gammaV){
   return(res)
 }
 
-getBestGamma <- function(xl, h, gammaV, eps){
+getBestGamma <- function(xl, h, eps) {
+  gammaV <- rep(0, nrow(xl))
   i <- 1
-  while(loo_potential(xl, h, gammaV) > eps){
-    cur_point <- c(xl[i, 1], xl[i, 2])
-    el_class <- xl[i , 3]
-    el_check <- potentialFunc(xl, cur_point, h, gammaV)  
-    if(el_class != el_check){
+  while(loo_potential(xl, h, gammaV) > eps) {
+    n <- dim(xl)[2]
+    # i <- sample(1:nrow(xl), 1)
+    if(potentialFunc(xl, xl[i, -n], h, gammaV) != xl[i, n]) {
       gammaV[i] <-  gammaV[i] + 1
     }
     i <- i + 1
-    
+    if(i>nrow(xl)) i <- 1
   }
   return(gammaV) 
 }

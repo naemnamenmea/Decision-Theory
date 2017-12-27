@@ -26,12 +26,12 @@ kerne <- function(u, type)
 
 loo <- function(k, xl, a=kNN)
 {
-  l <- dim(xl)[1]
-  n <- dim(xl)[2] - 1
+  l <- nrow(xl)
+  point <- xl[ , -ncol(xl) ]
   sum <- 0
   for (i in 1:l)
   {
-    if(a(xl[-i, ], xl[i,-(n+1)], k) != xl$Species[i])
+    if(a(xl[-i, ], point[i, ], k) != xl$Species[i])
     {
       sum <- sum+1
     }
@@ -39,19 +39,19 @@ loo <- function(k, xl, a=kNN)
   sum/l
 }
 
-loo_potential <- function(xl,  h, gammaV){
+loo_potential <- function(xl,  h, gamma){
+  
   sum <- 0
-  for(i in 1:nrow(xl)) {
-		point <- c(xl[i, 1] , xl[i, 2])
-	
-    test_data <- xl[-i, ]
-    test_gamma <- gammaV[-i]
-    value <- potentialFunc(test_data,  point, h, test_gamma)
-    if(xl[i, 3] != value){
+  l <- nrow(xl)
+  n <- ncol(xl)
+  
+  for(i in 1:l) {
+    value <- potentialFunc(xl[-i, ],  xl[i, -n], h, gamma[-i])
+    if(xl[i, n] != value) {
       sum <- sum + 1
     }
   }
-  return(sum / nrow(xl))  
+  return(sum / l)  
 }
 
 w <- function(i,k=0,q=0) #весовая ф-ция
@@ -77,4 +77,52 @@ sortObjectsByDist <- function(xl, z, metricFunction = euclideanDistance)
   }
   orderedXl <- xl[order(distances[, 2]), ]
   return (orderedXl)
+}
+
+## Восстановление центра нормального распределения
+estimateMu <- function(objects)
+{
+  ## mu = 1 / m * sum_{i=1}^m(objects_i)
+  rows <- dim(objects)[1]
+  cols <- dim(objects)[2]
+  mu <- matrix(NA, 1, cols)
+  for (col in 1:cols)
+  {
+    mu[1, col] = mean(objects[,col])
+  }
+  return(mu)
+}
+
+## Восстановление ковариационной матрицы нормального распределения
+estimateCovarianceMatrix <- function(objects, mu)
+{
+  rows <- dim(objects)[1]
+  cols <- dim(objects)[2]
+  sigma <- matrix(0, cols, cols)
+  for (i in 1:rows)
+  {
+    sigma <- sigma + (t(objects[i,] - mu) %*%
+                        (objects[i,] - mu)) / (rows - 1)
+  }
+  return (sigma)
+}
+
+## Нормализация обучающей выборки
+trainingSampleNormalization <- function(xl)
+{
+  n <- dim(xl)[2] - 1
+  for(i in 1:n)
+  {
+    xl[, i] <- (xl[, i] - mean(xl[, i])) / sd(xl[, i])
+  }
+  return (xl)
+}
+
+## Добавление колонки для из -1 для w0
+trainingSamplePrepare <- function(xl)
+{
+  l <- dim(xl)[1]
+  n <- dim(xl)[2] - 1
+  xl <- cbind(xl[, 1:n], seq(from = -1, to = -1,
+                             length.out = l), xl[, n + 1])
 }
