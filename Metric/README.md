@@ -199,7 +199,7 @@ getBestGamma <- function(xl, h, gammaV, eps){
 
 
 ### Сравнение алгоритмов:
-![сравнение алгоритмов](/images/comparison.png)
+![сравнение алгоритмов](images/comparison.png)
 
 ## Margin (отступы)
 ___
