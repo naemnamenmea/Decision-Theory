@@ -1,6 +1,6 @@
 ## Наивный Байесовский классификатор (NBC)
 ___
-![NBC](images/baes1.png images/baes2.png)
+<img src="images/baes1.png" width=49%/> <img src="images/baes2.png" width=49%/> 
 ```R
 naiveBayes <- function(xl, x, lambda, h)
 {
