@@ -10,4 +10,3 @@ sigpacket::process
 supressing signal 22 to win32 process
 
 1. выделить жирным шрифтом информацию на странице посвященной рок кривой
-2. описать немного pr кривую

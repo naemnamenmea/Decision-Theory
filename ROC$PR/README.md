@@ -1,6 +1,6 @@
-Curve error or ROC-curve – graphic characteristics of quality of a binary probabilistic classifier, the dependence of the proportion of true positive classifications of the proportion of false positive classifications by varying the threshold decision rule. Numerical characteristic ROC - AUC (Area under curve), higher is better, 0.5 - means that our classification is fully random.
+_**Curve error**_ or _**ROC-curve**_ – graphic characteristics of quality of a binary probabilistic classifier, the dependence of the proportion of true positive classifications of the proportion of false positive classifications by varying the threshold decision rule. Numerical characteristic ROC - _**AUC**_ (_Area under curve_), higher is better, 0.5 - means that our classification is fully random.
 
-Precision-Recall is a useful measure of success of prediction when the classes are very imbalanced. In information retrieval, precision is a measure of result relevancy, while recall is a measure of how many truly relevant results are returned.
+_**Precision-Recall (PR)**_ is a useful measure of success of prediction when the classes are very imbalanced. In information retrieval, precision is a measure of result relevancy, while recall is a measure of how many truly relevant results are returned.
 
 The precision-recall curve shows the tradeoff between precision and recall for different threshold.
 
@@ -10,7 +10,7 @@ In this example, as a classification algorithm, logistic regression was used.
 
 ROC-curve always starts in (0, 0) and ends at (1, 1).
 
-For numerical representation of quality of evaluations use the error matrix (confusion matrix):
+For numerical representation of quality of evaluations use the error matrix (<ins>confusion matrix</ins>):
 
 ||Predicted = -1|Predicted = +1|
 |---|---|---|
@@ -28,17 +28,17 @@ P means that the classifier determines the class of the object as a positive (N 
 
 From here we can obtain two values, which will help us to determine what errors does the model:
 
-_Sensitivity_ = TP/(TP+FN) - (~recall), or **True positive rate (TPR)**. The percentage of correctly predicted classes of the objects belonging to the positive class '+1'.
+_**Sensitivity**_ = TP/(TP+FN) - (_**~recall**_), or _**True positive rate (TPR)**_. The percentage of correctly predicted classes of the objects belonging to the positive class '+1'.
 
-_Specificity_ = TN/(TN+FP) - **True negative rate (TNR)**. The percentage of correctly predicted classes of the objects belonging to the negative class '-1'.
+_**Specificity**_ = TN/(TN+FP) - _**True negative rate (TNR)**_. The percentage of correctly predicted classes of the objects belonging to the negative class '-1'.
 
 Model with a higher threshold value will have a higher sensitivity and low specificity. A model with a low threshold the opposite.
 
-False Positive Rate (FPR) = FP/(FP+TN) - is the proportion of incorrectly predicted classes among the objects of the class '-1'.
+_**False Positive Rate (FPR)**_ = FP/(FP+TN) - is the proportion of incorrectly predicted classes among the objects of the class '-1'.
 
-False Negative Rate (FNR) = FN/(FN+TP).
+_**False Negative Rate (FNR)**_ = FN/(FN+TP).
 
-Precision = TP/(TP+FP).
+_**Precision**_ = TP/(TP+FP).
 
 F.e. will be used a database of survivors/dead passengers of the Titanic. Here is the code ...
 
