@@ -6,7 +6,7 @@ ROC-curve always starts in (0, 0) and ends at (1, 1).
 
 For numerical representation of quality of evaluations use the error matrix (confusion matrix):
 
-|---|Predicted = -1|Predicted = +1|
+||Predicted = -1|Predicted = +1|
 |---|---|---|
 |Actual = -1|True Negatives (TN)|False Positives (FP)|
 |Actual = +1|False Negatives (FN)|True Positives (TP)|
