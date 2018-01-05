@@ -1,33 +1,33 @@
-Кривая ошибок или ROC-кривая – графичекая характеристика качества бинарного вероятностного классификатора, зависимость доли верных положительных классификаций от доли ложных положительных классификаций при варьировании порога решающего правила. Численная характеристика ROC - AUC (Area under curve), чем выше значение - тем лучше, 0.5 - плохая классификация, не отличающаяся от равновероятностной, больше 0.75 - считается хорошая классификация.
+Curve error or ROC-curve – graphic characteristics of quality of a binary probabilistic classifier, the dependence of the proportion of true positive classifications of the proportion of false positive classifications by varying the threshold decision rule. Numerical characteristic ROC - AUC (Area under curve), higher is better, 0.5 - means that our classification is fully random.
 
 <img src="images/PR.png" width=48%/> <img src="images/ROC.png" width=48%/>
 
-ROC-кривая всегда начинается в (0, 0) и заканчивается в (1, 1).
+ROC-curve always starts in (0, 0) and ends at (1, 1).
 
-Для численного представления качества оценки используют матрицу ошибок (confusion matrix):
+For numerical representation of quality of evaluations use the error matrix (confusion matrix):
 
-|---|Predicted = 0|Predicted = 1|
+|---|Predicted = -1|Predicted = +1|
 |---|---|---|
-|Actual = 0|True Negatives (TN)|False Positives (FP)|
-|Actual = 1|False Negatives (FN)|True Positives (TP)|
+|Actual = -1|True Negatives (TN)|False Positives (FP)|
+|Actual = +1|False Negatives (FN)|True Positives (TP)|
 
-В случае бинарной классификации метка класса y принимает значение '1' (positive) или '0' (negative). Вводятся 4 величины, соответствующие элементам матрицы ошибок:
+In the case of binary classification class label **y** takes a value '+1' (positive) or '-1' (negative). Entered 4 values corresponding to the elements of error matrices:
 
 * True positive (TP) ![TP](images/TP.png) .
 * True negative (TN) ![TN](images/TN.png) .
 * False positive (FP) ![FP](images/FP.png) .
 * False negative (FN) ![FN](images/FN.png) .
 
-P означает что классификатор определяет класс объекта как положительный (N - отрицательный). T - значит что класс предсказан правильно (соответственно F - неправильно).
+P means that the classifier determines the class of the object as a positive (N - negative). T - means the class predicted correctly (accordingly F - wrong).
 
-Отсюда можно получить два значения, которые помогут нам определить какие ошибки делает модель:
+From here we can obtain two values, which will help us to determine what errors does the model:
 
-_Sensitivity_ = TP/(TP+FN) - (~recall), или **True positive rate (TPR)**. Процент верно предсказанных классов у объектов, относящихся к классу '1'.
+_Sensitivity_ = TP/(TP+FN) - (~recall), or **True positive rate (TPR)**. The percentage of correctly predicted classes of the objects belonging to the positive class '+1'.
 
-_Specificity_ = TN/(TN+FP) - **True negative rate (TNR)**. Процент верно предсказанных классов у объектов, относящихся к классу '0'.
+_Specificity_ = TN/(TN+FP) - **True negative rate (TNR)**. The percentage of correctly predicted classes of the objects belonging to the negative class '-1'.
 
-Модель с более высоким пороговым значением будет иметь более высокую чувствительность и низкую специфичность. Модель с низким пороговым значением наоборот.
+Model with a higher threshold value will have a higher sensitivity and low specificity. A model with a low threshold the opposite.
 
-False Positive Rate (FPR) = FP/(FP+TN) - это доля неправильно предсказанных классов среди объектов класса '0'.
+False Positive Rate (FPR) = FP/(FP+TN) - is the proportion of incorrectly predicted classes among the objects of the class '-1'.
 False Negative Rate (FNR) = FN/(FN+TP)
 Precision = TP/(TP+FP)
