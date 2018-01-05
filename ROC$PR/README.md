@@ -3,6 +3,7 @@
 ROC-кривая всегда начинается в (0, 0) и заканчивается в (1, 1).
 
 Для численного представления качества оценки используют матрицу ошибок (confusion matrix):
+
 |---|Predicted = 0|Predicted = 1|
 |---|---|---|
 |Actual = 0|True Negatives (TN)|False Positives (FP)|
