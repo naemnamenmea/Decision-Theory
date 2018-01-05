@@ -29,5 +29,7 @@ _Specificity_ = TN/(TN+FP) - **True negative rate (TNR)**. The percentage of cor
 Model with a higher threshold value will have a higher sensitivity and low specificity. A model with a low threshold the opposite.
 
 False Positive Rate (FPR) = FP/(FP+TN) - is the proportion of incorrectly predicted classes among the objects of the class '-1'.
-False Negative Rate (FNR) = FN/(FN+TP)
-Precision = TP/(TP+FP)
+
+False Negative Rate (FNR) = FN/(FN+TP).
+
+Precision = TP/(TP+FP).
