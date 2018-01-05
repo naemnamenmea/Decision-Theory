@@ -1,5 +1,9 @@
 Curve error or ROC-curve – graphic characteristics of quality of a binary probabilistic classifier, the dependence of the proportion of true positive classifications of the proportion of false positive classifications by varying the threshold decision rule. Numerical characteristic ROC - AUC (Area under curve), higher is better, 0.5 - means that our classification is fully random.
 
+Precision-Recall is a useful measure of success of prediction when the classes are very imbalanced. In information retrieval, precision is a measure of result relevancy, while recall is a measure of how many truly relevant results are returned.
+
+The precision-recall curve shows the tradeoff between precision and recall for different threshold.
+
 <img src="images/PR.png" width=48%/> <img src="images/ROC.png" width=48%/>
 
 In this example, as a classification algorithm, logistic regression was used.
@@ -36,6 +40,8 @@ False Negative Rate (FNR) = FN/(FN+TP).
 
 Precision = TP/(TP+FP).
 
+F.e. will be used a database of survivors/dead passengers of the Titanic. Here is the code ...
+
 ```R
 #  Read data in dataframe
 data <- read.csv("data/train.csv")
@@ -49,11 +55,6 @@ model = glm(Survived ~ Sex + Pclass + Age, data=data, family = binomial) #binomi
 #summary(model)
 
 t <- 0.4 #the threshold level
-# Read test data
-# test <- read.csv("data/test.csv")
-# predictResault <- predict(model, newdata = test, type="response")
-# test$Survived[predictResault >= t] = 1
-# test$Survived[predictResault < t] = 0
 
 # Using the model to predict on test data
 # do not specify the parameter newdata
@@ -71,10 +72,10 @@ predictTrain <- predict(model, type="response")
 # install.packages("PRROC")
 require("PRROC")
 
-fg <- predictTrain[ data$Survived == 1 ]
-bg <- predictTrain[ data$Survived == 0 ]
-pr <- pr.curve(scores.class0 = fg, scores.class1 = bg, curve = T)
+alive <- predictTrain[ data$Survived == 1 ]
+dead <- predictTrain[ data$Survived == 0 ]
+pr <- pr.curve(scores.class0 = alive, scores.class1 = dead, curve = T)
 plot(pr, xaxs = "i", yaxs = "i")
-roc <- roc.curve(scores.class0 = fg, scores.class1 = bg, curve = T)
+roc <- roc.curve(scores.class0 = alive, scores.class1 = dead, curve = T)
 plot(roc, xaxs = "i", yaxs = "i")
 ```
