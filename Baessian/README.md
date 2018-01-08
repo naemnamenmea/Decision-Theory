@@ -1,15 +1,73 @@
 ## Наивный Байесовский классификатор (NBC)
 ___
+Below is the Naive Bayes’ Theorem:
 
-Как известно, формула Байеса позволяет поменять местами причину и следствие в формулах с условными вероятностями:
-![empty](images/readme_img_1.png)
-Пусть в качестве **A** у нас будет рассматриваться некоторое множество классов **C**, которым могут принадлежать наши объекты; а в качестве **B** – набор признаков (вектор предикторов) **X1,X2,...,Xn**, по значениям которым мы будем пытаться отнести любой объект к одному из классов. В этих обозначениях формула Байеса перепишется следующим образом:
-![empty](images/readme_img_2.png)
+P(A | B) = P(A) * P(B | A) / P(B)
 
-<img src="images/baes1.png" width=49%/> <img src="images/baes2.png" width=49%/> 
+Which can be derived from the general multiplication formula for AND events:
+
+P(A and B) = P(A) * P(B | A)
+
+P(B | A) = P(A and B) / P(A)
+
+P(B | A) = P(B) * P(A | B) / P(A)
+
+If I replace the letters with meaningful words as I have been adopting throughout, the Naive Bayes formula becomes:
+
+P(outcome | evidence) = P(outcome) * P(evidence | outcome) / P(evidence)
+
+It is with this formula that the Naive Bayes classifier calculates conditional probabilities for a class outcome given prior information.
+
+Before you use this source you need install packages & load some libraries...
+
 ```R
-
+install.packages("caret")
+install.packages("MASS")
+install.packages("klaR")
+require("caret")
+require(lattice)
+require(ggplot2)
+require(klaR)
+require(MASS)
+require(e1071) #predict
 ```
+
+Loading data & Creating the model
+
+```R
+data("iris")
+model <- NaiveBayes(Species ~ ., data = iris)
+```
+
+**predict** computes the conditional a-posterior probabilities of a categorical class variable given independent predictor variables using the Bayes rule.
+
+```R
+preds <- predict(model, iris[,-5])
+```
+
+The last one, we need to know how many error classified, so we need to compare the result of prediction with the class/iris species.
+
+```R
+table(predict(model, iris[,-5])$class, iris[,5])
+
+##             y
+##              setosa versicolor virginica
+##   setosa         50          0         0
+##   versicolor      0         47         3
+##   virginica       0          3        47
+```
+
+If you want to plot the features with Naive Bayes, you can use this command:
+
+```R
+naive_iris <- NaiveBayes(iris$Species ~ ., data = iris)
+plot(naive_iris)
+```
+
+![b_iris_PL](images/b_iris_PL.png)
+![b_iris_PW](images/b_iris_PW.png)
+![b_iris_SL](images/b_iris_SL.png)
+![b_iris_SW](images/b_iris_SW.png)
 
 ## Plug-In
 ___
