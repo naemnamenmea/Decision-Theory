@@ -86,8 +86,7 @@ drawLinear <- function()
   xy1 <- mvrnorm(n=ObjectsCountOfEachClass, c(0, 0), Sigma1)
   xy2 <- mvrnorm(n=ObjectsCountOfEachClass, c(10, -10), Sigma2)
   xl <- rbind(cbind(xy1, -1), cbind(xy2, +1))
-  colors <- c(rgb(255/255, 255/255, 0/255), "white", 
-              rgb(0/255, 200/255, 0/255))
+  colors <- c("blue", "white", "yellow")
   ## Нормализация данных
   xlNorm <- trainingSampleNormalization(xl)
   xlNorm <- trainingSamplePrepare(xlNorm)
@@ -96,7 +95,7 @@ drawLinear <- function()
 	
 	## ADALINE
 	w <- sg.ADALINE(xlNorm)
-	abline(a = w[3] / w[2], b = -w[1] / w[2], lwd = 3, col = "blue")
+	abline(a = w[3] / w[2], b = -w[1] / w[2], lwd = 3, col = "brown")
   
 	## Правило Хебба
 	w <- sg.Hebb(xlNorm)
@@ -108,7 +107,7 @@ drawLinear <- function()
 		   
 	legend("bottomright", c("ADALINE", "Hebb's rule",
 	"Logistic regression"), pch = c(15,15,15), 
-	col = c("blue", "green3", "red"))
+	col = c("brown", "green3", "red"))
 }
 
 drawPlugIn <- function()

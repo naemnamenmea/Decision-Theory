@@ -1,8 +1,12 @@
+Often we need to assess the quality of the model before choosing threshold. Need to measure the quality of the estimates belonging to the first class.
+
 _**Curve error**_ or _**ROC-curve**_ – graphic characteristics of quality of a binary probabilistic classifier, the dependence of the proportion of true positive classifications of the proportion of false positive classifications by varying the threshold decision rule. Numerical characteristic ROC - _**AUC**_ (_Area under curve_), higher is better, 0.5 - means that our classification is fully random.
 
 _**Precision-Recall (PR)**_ is a useful measure of success of prediction when the classes are very imbalanced. In information retrieval, precision is a measure of result relevancy, while recall is a measure of how many truly relevant results are returned.
 
 The precision-recall curve shows the tradeoff between precision and recall for different threshold.
+
+The area under ROC-curve does not depend on the balance of classes and better interpreted. The area under PR-curve more expressive in the case of the imbalance of classes.
 
 <img src="images/PR.png" width=48%/> <img src="images/ROC.png" width=48%/>
 
