@@ -1,4 +1,4 @@
-## Наивный Байесовский классификатор (NBC)
+## Naive Bayesian Classifier (NBC)
 ___
 Below is the Naive Bayes’ Theorem:
 
@@ -18,7 +18,10 @@ P(outcome | evidence) = P(outcome) * P(evidence | outcome) / P(evidence)
 
 It is with this formula that the Naive Bayes classifier calculates conditional probabilities for a class outcome given prior information.
 
-Before you use this source you need install packages & load some libraries...
+The reason it is termed “naive” is because we assume independence between attributes when in reality they may be dependent in some way.
+
+So let`s try to implement the naive Bayesian classifier and see what we get.
+Before you use the source below you need install several packages & load some libraries...
 
 ```R
 install.packages("caret")

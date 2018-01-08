@@ -40,7 +40,7 @@ plot(model)
 # y3 <- cond_probs$Petal.Width["virginica",]
 # x <- as.double(colnames(cond_probs$Petal.Width))
 # 
-# plot(x,y, type="n", main="Petal.Width", xlab="val", ylab="prob")
+# plot(x,y, type="n", main="Naive Bayes Plot", xlab="Petal.Width", ylab="Density")
 # lines(x,y1,col="red",lwd=3)
 # lines(x,y2,col="green3",lwd=3)
 # lines(x,y3,col="blue",lwd=3)
