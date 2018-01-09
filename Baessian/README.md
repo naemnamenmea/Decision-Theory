@@ -87,15 +87,10 @@ plot(naive_iris)
 
 ## Plug-In
 ___
-<!--
-В задачах классификации с гауссовскими классами параметры функций правдоподобия µˆy и Σy
-![plug-in](images/readme_img_5.png)
-можно оценить по частям обучающей выборки
-![plug-in](images/readme_img_3.png)
-для каждого класса y отдельно. Оцениваются априорные вероятности классов Py. Полученные выборочные оценки непосредственно подставляются в формулу
-![plug-in](images/readme_img_4.png)
-В результате получается алгоритм классификации, который так и называетсяподстановочным (plug-in).
--->
+Estimate the parameters of the likelihood functions µˆy and Σy acting on the parts of the training samples xl(y) for each class y in Y. Then the sample of evaluations we substitute in the optimal Bayesian classifier. Get a normal Bayesian classifier, which is also known as a _**a wildcard (plug-in)**_.
+
+In the asymptotic expansion of l(y) -> oo assessment µˆy and Σy acting have several optimal properties: they are _*not*displaced, efficient and solvent**_. However, estimates made on short samples may not be accurate enough.
+
 ![plug-in](images/plug-in_quadro.png)
 ```R
 ## Получение коэффициентов подстановочного алгоритма
@@ -121,6 +116,14 @@ getPlugInDiskriminantCoeffs <- function(mu1, sigma1, mu2, sigma2)
 
 ## LDF
 ___
+Let the covariance matrices of the classes are the same and equal to Σ.
+
+![sigma](images/LDF_sigma.gif)
+
+In this case, the separating surface is piecewise linear. The wildcard algorithm is:
+
+![a](images/LDF_a.gif)
+
 ![LDF](images/LDF.png)
 ```R
 ## Оценка ковариационной матрицы для ЛДФ

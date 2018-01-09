@@ -3,6 +3,10 @@ ___
 
 ## Adaline
 ___
+ADALINE stands for **Ada**ptive **Lin**ear **E**lement. It was developed by Professor Bernard Widrow and his graduate student Ted Hoff at Stanford University in 1960. It is based on the McCulloch-Pitts model and consists of a weight, a bias and a summation function.
+
+Operation: ![adaline](images/adaline_1.svg)
+
 ![Adaline](images/ADALINE.png)
 ```R
 ## Квадратичная функция потерь

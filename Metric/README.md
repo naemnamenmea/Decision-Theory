@@ -1,4 +1,4 @@
-# Метрические алгоритмы классификации
+# Metric classification algorithms
 ___
 The main task of which will be considered here is to classify the object (i.e., to determine to which class it belongs) according to the available data (sample), and to do it as reliably as possible.
 
@@ -131,8 +131,7 @@ parsenWindowFloat <- function(xl, u, k, kerType=ker.type[3])
 }
 ```
 
-![The optimal k for PWF](images/parsenWindowFloat_kOpt.png)
-
+[The optimal k for PWF](images/parsenWindowFloat_kOpt.png).
 The code resides [here](sourses/parsenWindowFloat.R).
 
 <img src="images/PWFix_gaussian.png" width=40%/> <img src="images/PWFix_triangle.png" width=52%/> 
@@ -146,16 +145,16 @@ Here, too, everything is easy. We carry out an analogy with physical particles (
 ```R
 potentialFunc <- function(xl, x, h, gammaV){
   distances <- c()
-  wght_to_class <- c()
+  cw <- c()
   for(i in 1:nrow(xl)){
     distances[i] <- euclideanDistance(xl[i , 1:length(xl) - 1] , x)
-    wght_to_class[i] <- kerne(distances[i] / h[i], ker.type[7]) * gammaV[i]  
+    cw[i] <- kerne(distances[i] / h[i], ker.type[7]) * gammaV[i]  
   }
   
-  potentional_wght <- data.frame(p_class <- xl$Species, wght_to_class)
-  wght_max <- c( sum_setosa <- sum(potentional_wght[potentional_wght$p_class == "setosa" , 2]),
-                 sum_versicolor <- sum(potentional_wght[potentional_wght$p_class == "versicolor" , 2]),
-                 sum_virginica <- sum(potentional_wght[potentional_wght$p_class == "virginica" , 2]) )
+  pw <- data.frame(class <- xl$Species, cw)
+  wght_max <- c( sum(pw[pw$class == "setosa" , 2]),
+                 sum(pw[pw$class == "versicolor" , 2]),
+                 sum(pw[pw$class == "virginica" , 2]) )
   if(sum(wght_max) == 0){
     
     res <- ""
@@ -214,15 +213,15 @@ This method (optimization) allows to reduce the sample `xl`, throwing out her no
 ```R
 STOLP <- function(xl, delta, eps, metricFunction = euclideanDistance)
 {
-  n <- dim(xl)[2]-1 #кол-во признаков
-  l <- dim(xl)[1] #кол-во объектов выборки
-  classesList <- unique(xl[ ,n+1]) #список уникальных классов
+  n <- dim(xl)[2]-1 #number signs
+  l <- dim(xl)[1] #number of objects: sample
+  classesList <- unique(xl[ ,n+1]) #a list of unique classes
   len <- length(classesList)
-  vvz <- NULL #каждому классу ставится в соответствие номер
+  vvz <- NULL #each class is assigned a number
   for(i in 1:len) { vvz[classesList[i]] <- i }
-  mar <- rep(NA,len) #список отступов для элементов выборки
+  mar <- rep(NA,len) #list of margins for the sample
   j <- 0
-  for(i in 1:l) #отсеиваем выбросы
+  for(i in 1:l) #screen out emissions
   {
     if(Margin(xl,i)>=delta)
     {
@@ -234,13 +233,13 @@ STOLP <- function(xl, delta, eps, metricFunction = euclideanDistance)
   for(i in 1:l)
   {
     tmp <- Margin(xl[1:l, ],i)
-    tmp2 <- vvz[xl[i,n+1]] #номер класса i-го объекта выборки
-    #перенумеровываем выборку так, что
-    #первые len эл. выборки имеют макс. отступы для каждого класса
-    if(is.na(mar[tmp2]) | mar[tmp2]<tmp) #если уже был рассмотрен хотя бы 1 объект
-    {#класса с номером tmp2, то...
-      #ищем объект с максимальным отступом для этого класса
-        mar[tmp2] <- tmp #новый макс. отступ для tmp2 класса
+    tmp2 <- vvz[xl[i,n+1]] #the class number of the i-th sample object
+    #perioperative the sample so that
+    #the first len elements of the sample have maximum margins for each class
+    if(is.na(mar[tmp2]) | mar[tmp2]<tmp) #if already been reviewed at least 1 object
+    {#class with number tmp2,...
+      #looking for the object with the maximum margin for this class
+        mar[tmp2] <- tmp #new max offset to tmp2 class
         tmp <- xl[tmp2, ]
         xl[tmp2, ] <- xl[i, ]
         xl[i, ] <- tmp
@@ -297,6 +296,3 @@ STOLP <- function(xl, delta, eps, metricFunction = euclideanDistance)
 ![diff](../general/images/diff_loo_kNN_STOLP.png)
 
 The code resides [here](../general/sourses/STOLP.R).
-
-[loo for kNN before STOLP](../general/images/loo_for_kNN_before_STOLP.png)
-[loo for kNN after STOLP](../general/images/loo_for_kNN_after_STOLP.png)
