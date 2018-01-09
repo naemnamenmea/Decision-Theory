@@ -48,6 +48,28 @@ model <- NaiveBayes(Species ~ ., data = iris)
 preds <- predict(model, iris[,-5])
 ```
 
+Here they are
+
+```R
+$class
+  [1] setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+  [8] setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+ [15] setosa     setosa     setosa     setosa     setosa     setosa     setosa
+ ...
+[141] virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+[148] virginica  virginica  virginica 
+Levels: setosa versicolor virginica
+
+ $posterior
+              setosa   versicolor    virginica
+  [1,]  1.000000e+00 2.981309e-18 2.152373e-25
+  [2,]  1.000000e+00 3.169312e-17 6.938030e-25
+  [3,]  1.000000e+00 2.367113e-18 7.240956e-26
+  ...
+[149,] 1.439996e-195 3.384156e-07 9.999997e-01
+[150,] 2.771480e-143 5.987903e-02 9.401210e-01
+```
+
 The last one, we need to know how many error classified, so we need to compare the result of prediction with the class/iris species.
 
 ```R

@@ -8,7 +8,7 @@ Assuming that your data-points are of 2 classes, SVM attempts to find the optima
 
 The ‘support vector’ in this case is the line formed by data points that lie on the margin of separation.
 
-![SVM](images/SVM.png)
+<img src="images/SVM.png" width="50%" align="right"/>
 
 ### What happens if a separating line (linear hyperplane) cannot be determined?
 
