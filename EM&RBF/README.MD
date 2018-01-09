@@ -6,6 +6,21 @@ In statistics, an **_expectation–maximization (EM) algorithm_** is an iterativ
 ![EM1](images/EM1.png)
 ![EM2](images/EM2.png)
 
+This is how we can cluster the data...
+
+```R
+require(mclust) #Mclust
+
+data(iris)
+
+mc <- Mclust(iris[,1:4],G=3) # 3 clusters
+plot(mc, what=c("classification"), dimens=c(1,3)) # using 1st and 3rd column of the iris dataset
+mc$parameters$mean # centers of clusters #eq to t(irisCluster$centers)
+mc$G # number of clusters
+
+irisCluster <- kmeans(iris[,1:4],3)
+```
+
 ## SVM
 ___
 This model constitutes an adaptation of the classical RBF network where the outputs represent the class conditional distributions. Since the network outputs correspond to probability density functions, training process is treated as maximum likelihood problem and an expectation-maximization (EM) algorithm is proposed for adjusting the network parameters. Experimental results show that proposed architecture exhibits superior classification performance compared to the classical RBF network.

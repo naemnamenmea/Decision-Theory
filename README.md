@@ -1,8 +1,10 @@
 # Welcome, traveller! Enjoy classification algorithms (CA) here...
 
-![plug-in](Baessian/images/plug-in_quadro.png)
+![title img](EM&RBF/images/EM1.png)
 
 ### [Baessian CA](Baessian)
+### [EM&RBF](EM&RBF)
 ### [Linear CA](Linear)
 ### [Metric CA](Metric)
 ### [ROC&PR](ROC&PR)
+### [SVM](SVM)
