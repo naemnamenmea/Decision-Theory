@@ -33,63 +33,6 @@ irisCluster <- kmeans(iris[,1:4],3)
 ![EM1](images/EM1.png)
 ![EM2](images/EM2.png)
 
-```R
-#-------------------------------- Expectation  -----------------------------
-
-expectation <- function(sample,p,a,b)
-  {
-  p_expectation <- (p*dbinom(sample,1,a)) / ( p*dbinom(sample,1,a) + (1-p)*dbinom(sample,1,b) )
-  return(p_expectation)
-}
-
-
-#-------------------------------- Maximization   --------------------------------
-
-maximization <- function(sample,epart){
-  
-  # estimate p
-  
-  p_temp <- mean(epart)
-  
-  # estimate a and b
-  
-  a_temp <- sum(sample*epart) / sum(epart)
-  b_temp <- sum(sample*(1-epart)) / sum(1-epart)
-  
-  list(p_temp,a_temp,b_temp)   
-}
-
-
-
-#---------------------------- Expectation Maximization Algorithm  -------------------------
-
-EM <- function(sample,p_inits,a_inits,b_inits,maxit=1000,tol=1e-6)
-  {
-  # Estimation of parameter(Initial)
-  flag <- 0
-  p_cur <- p_inits; a_cur <- a_inits; b_cur <- b_inits
-  
-  # Iterate between expectation and maximization parts
-  
-  for(i in 1:maxit){
-    cur <- c(p_cur,a_cur,b_cur)
-    new <- maximization(sample,expectation(sample, p_cur, a_cur, b_cur))
-    p_new <- new[[1]]; a_new <- new[[2]]; b_new <- new[[3]]
-    new_step <- c(p_new,a_new,b_new)
-    
-    # Stop iteration if the difference between the current and new estimates is less than a tolerance level
-    if( all(abs(cur - new_step) < tol) ){ flag <- 1; break}
-    
-    
-    # Otherwise continue iteration
-    p_cur <- p_new; a_cur <- a_new; b_cur <- b_new
-  }
-  if(!flag) warning("Didn't converge\n")
-  
-  list(p_cur, a_cur, b_cur)
-}
-```
-
 ## RBF
 ___
 This model constitutes an adaptation of the classical RBF network where the outputs represent the class conditional distributions. Since the network outputs correspond to probability density functions, training process is treated as maximum likelihood problem and an expectation-maximization (EM) algorithm is proposed for adjusting the network parameters. Experimental results show that proposed architecture exhibits superior classification performance compared to the classical RBF network.
