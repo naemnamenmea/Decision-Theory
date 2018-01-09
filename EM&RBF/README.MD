@@ -3,8 +3,17 @@
 ___
 In statistics, an **_expectation–maximization (EM) algorithm_** is an iterative method to find maximum likelihood or maximum a posteriori (MAP) estimates of parameters in statistical models, where the model depends on unobserved latent variables. The EM iteration alternates between performing an expectation (E) step, which creates a function for the expectation of the log-likelihood evaluated using the current estimate for the parameters, and a maximization (M) step, which computes parameters maximizing the expected log-likelihood found on the E step. These parameter-estimates are then used to determine the distribution of the latent variables in the next E step.
 
-![EM1](images/EM1.png)
-![EM2](images/EM2.png)
+It is based upon probabilistic model building with partial observations
+
+Likelihood Function
+
+![Likelihood Function](images/Likelihood_Function.png)
+
+The Likelihood Function finds the best model given the data.
+
+![EM](images/EM.png)
+
+_expectation-maximization (EM) algorithm_
 
 This is how we can cluster the data...
 
@@ -19,6 +28,66 @@ mc$parameters$mean # centers of clusters #eq to t(irisCluster$centers)
 mc$G # number of clusters
 
 irisCluster <- kmeans(iris[,1:4],3)
+```
+
+![EM1](images/EM1.png)
+![EM2](images/EM2.png)
+
+```R
+#-------------------------------- Expectation  -----------------------------
+
+expectation <- function(sample,p,a,b)
+  {
+  p_expectation <- (p*dbinom(sample,1,a)) / ( p*dbinom(sample,1,a) + (1-p)*dbinom(sample,1,b) )
+  return(p_expectation)
+}
+
+
+#-------------------------------- Maximization   --------------------------------
+
+maximization <- function(sample,epart){
+  
+  # estimate p
+  
+  p_temp <- mean(epart)
+  
+  # estimate a and b
+  
+  a_temp <- sum(sample*epart) / sum(epart)
+  b_temp <- sum(sample*(1-epart)) / sum(1-epart)
+  
+  list(p_temp,a_temp,b_temp)   
+}
+
+
+
+#---------------------------- Expectation Maximization Algorithm  -------------------------
+
+EM <- function(sample,p_inits,a_inits,b_inits,maxit=1000,tol=1e-6)
+  {
+  # Estimation of parameter(Initial)
+  flag <- 0
+  p_cur <- p_inits; a_cur <- a_inits; b_cur <- b_inits
+  
+  # Iterate between expectation and maximization parts
+  
+  for(i in 1:maxit){
+    cur <- c(p_cur,a_cur,b_cur)
+    new <- maximization(sample,expectation(sample, p_cur, a_cur, b_cur))
+    p_new <- new[[1]]; a_new <- new[[2]]; b_new <- new[[3]]
+    new_step <- c(p_new,a_new,b_new)
+    
+    # Stop iteration if the difference between the current and new estimates is less than a tolerance level
+    if( all(abs(cur - new_step) < tol) ){ flag <- 1; break}
+    
+    
+    # Otherwise continue iteration
+    p_cur <- p_new; a_cur <- a_new; b_cur <- b_new
+  }
+  if(!flag) warning("Didn't converge\n")
+  
+  list(p_cur, a_cur, b_cur)
+}
 ```
 
 ## RBF
