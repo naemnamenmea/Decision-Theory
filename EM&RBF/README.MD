@@ -21,7 +21,7 @@ mc$G # number of clusters
 irisCluster <- kmeans(iris[,1:4],3)
 ```
 
-## SVM
+## RBF
 ___
 This model constitutes an adaptation of the classical RBF network where the outputs represent the class conditional distributions. Since the network outputs correspond to probability density functions, training process is treated as maximum likelihood problem and an expectation-maximization (EM) algorithm is proposed for adjusting the network parameters. Experimental results show that proposed architecture exhibits superior classification performance compared to the classical RBF network.
 
