@@ -75,10 +75,8 @@ drawSTOLPkNN <- function() {
 		   xpd=NA,horiz=FALSE, bty="n", bg="white")
 }
 
-drawLinear <- function()
+drawLinear <- function(ObjectsCountOfEachClass=87)
 {
-  # Кол-во объектов в каждом классе
-  ObjectsCountOfEachClass <- 87
   ## Моделируем обучающие данные
   library(MASS)
   Sigma1 <- matrix(c(2, 4, 1, 41), 2, 2)

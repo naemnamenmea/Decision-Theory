@@ -4,7 +4,7 @@ shinyServer(function(input, output) {
   
   output$linerPlot = reactivePlot(function(){
     
-	drawLinear()
+	drawLinear(ObjectsCountOfEachClass=input$ObjectsCountOfEachClass)
   }
   )
 })

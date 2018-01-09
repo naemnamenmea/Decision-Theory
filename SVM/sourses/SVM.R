@@ -5,7 +5,9 @@ require("kernlab")
 require("MASS")
 
 
-#attach(iris)
+data(iris)
+attach(iris)
+
 x <- subset(iris, select = -5) #-Species
 y <- iris$Species
 svm_model <- svm(Species ~ ., data = iris)
@@ -18,13 +20,11 @@ pred <- predict(svm_model,x)
 # svm_model_after_tune <- svm(Species ~ ., data = iris, kernel="radial", cost=1, gamma=0.5)
 # # summary(svm_model_after_tune)
 
-data(iris)
 svm.data <- iris[ Species!="virginica" ,]
 svm.data$Species <- factor(svm.data$Species)
 svm.fit <- svm(Species ~ Petal.Length + Petal.Width, data = svm.data, kernel="linea")
 plot(svm.fit, svm.data, Petal.Width ~ Petal.Length)
 
-data(iris)
 svm.data <- iris[ Species!="setosa" ,]
 svm.data$Species <- factor(svm.data$Species)
 svm.fit <- svm(Species ~ Petal.Length + Petal.Width, data = svm.data, kernel="linea")
