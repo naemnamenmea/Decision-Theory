@@ -51,16 +51,7 @@ preds <- predict(model, iris[,-5])
 Here they are
 
 ```R
-$class
-  [1] setosa     setosa     setosa     setosa     setosa     setosa     setosa    
-  [8] setosa     setosa     setosa     setosa     setosa     setosa     setosa    
- [15] setosa     setosa     setosa     setosa     setosa     setosa     setosa
- ...
-[141] virginica  virginica  virginica  virginica  virginica  virginica  virginica 
-[148] virginica  virginica  virginica 
-Levels: setosa versicolor virginica
-
- $posterior
+> preds$posterior
               setosa   versicolor    virginica
   [1,]  1.000000e+00 2.981309e-18 2.152373e-25
   [2,]  1.000000e+00 3.169312e-17 6.938030e-25

@@ -18,7 +18,7 @@ preds <- predict(model, newdata = iris[,-5]) #type="raw"
 
 conf_matrix <- table(preds$class, iris[,5])
 
-plot(model)
+#plot(model)
 
 ####################################################################
 
