@@ -8,5 +8,3 @@
 ### [Metric CA](Metric)
 ### [ROC&PR](ROC&PR)
 ### [SVM](SVM)
-
-rrtetet
